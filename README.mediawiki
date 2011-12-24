@@ -1,0 +1,38 @@
+== Welcome ==
+
+Welcome the Neuvoo project! You can read all about [[About Us|who we are and what our goals are]], or you can use one of the handy links below. If you ever get stuck, find a bug, or have an idea, please join us in conversation in IRC freenode#neuvoo]].
+
+We send out a huge [[Thanks|thanks]] to those who helped us, directly or indirectly, by writing documentation, tools, patches or just answering our questions.
+
+== We're Here to Help! ==
+
+Gentoo isn't always easy to install or mess with. Please use our support channels, such as our IRC channel and mailing list, if you ever get stuck!
+
+== Users ==
+
+===== [[Install_Pre-Built_Image|Installation]] =====
+
+Stop by this page to get step-by-step instructions on installing and configuring a pre-built image.
+
+===== [[Gentoo Quick Start]] =====
+
+This page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
+
+===== [[Tools]] =====
+
+Additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
+
+===== [[Support]] =====
+
+Here you can find our bug report system, mailing lists, IRC channels, and other support channels.
+
+
+== Developers ==
+
+===== [[Create Image]] =====
+
+You've seen all the [[Pre-built images]] available, but you want to create your own. That's reasonable. We understand that. We created a tutorial to guide you through the process we figured out ourselves, from creating the cross-compiler to packaging up a final image.
+
+===== [[Documentation Guidelines]] =====
+
+There are certain areas of our wiki that need to remain consistent so it is easy to organize and reuse information.
