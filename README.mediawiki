@@ -1,8 +1,8 @@
 == Welcome ==
 
-Welcome the Neuvoo project! You can read all about [https://github.com/Neuvoo/information/misc/AboutUs.mediawiki who we are and what our goals are], or you can use one of the handy links below. If you ever get stuck, find a bug, or have an idea, please join us in conversation in IRC freenode#neuvoo.
+Welcome the Neuvoo project! You can read all about [[About Us|who we are and what our goals are]], or you can use one of the handy links below. If you ever get stuck, find a bug, or have an idea, please join us in conversation in IRC freenode#neuvoo.
 
-We send out a huge [https://github.com/Neuvoo/information/misc/Thanks.mediawiki thanks]] to those who helped us, directly or indirectly, by writing documentation, tools, patches or just answering our questions.
+We send out a huge [[Thanks|thanks]] to those who helped us, directly or indirectly, by writing documentation, tools, patches or just answering our questions.
 
 == We're Here to Help! ==
 
