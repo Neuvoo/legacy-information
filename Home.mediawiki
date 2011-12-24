@@ -16,7 +16,7 @@ Stop by [[Installation|this page]] to get step-by-step instructions on installin
 
 ===== Gentoo Quick Start =====
 
-The [[Gentoo_QuickStart|Gentoo Quick Start] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
+The [[Gentoo_QuickStart|Gentoo Quick Start]] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
 
 ===== Tools =====
 

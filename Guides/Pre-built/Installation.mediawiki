@@ -81,12 +81,10 @@ clock="local"
 ==== Post-Boot Configuration ====
 Follow [[Post-Boot Configuration]].
 
-You can also follow [[USB (Networking)]] if you wish. Use the mini-USB port if you want the Pandora to use another device's Internet connection, or use the full USB port 
-if you want another device to use the Pandora's Internet connection.
+You can also follow [[USB Networking|USB (Networking)]] if you wish. Use the mini-USB port if you want the Pandora to use another device's Internet connection, or use the full USB port if you want another device to use the Pandora's Internet connection.
 
 === TouchBook ===
-TODO
-([[Squashfs Rootfs]] needs refactoring too.)
+TODO ([[Squashfs Rootfs]] needs refactoring too.)
 
 === BeagleBoard ===
 TODO ([[NFS Rootfs]] requires more editing)
