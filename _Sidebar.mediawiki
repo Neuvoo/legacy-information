@@ -1,0 +1,43 @@
+'''Get Neuvoo!'''
+*[[Pre-Built Images]]
+*[[Install]]
+*[[Kernels]]
+*[[Binaries]]
+
+'''Wiki'''
+*[[README|Main Page]]
+*[[HOWTO/README|HOWTO]]
+*[[Tools|Tools]]
+*[[Platforms]]
+*[[Projects]]
+
+'''Team Neuvoo'''
+*[http://groups.google.com/group/neuvoo Mailing List]
+*IRC @ Freenode#neuvoo
+
+'''Communities'''
+*''Gentoo''
+**[http://www.gentoo.org Website]
+**[http://www.gentoo-wiki.com Wiki]
+**[http://www.gentoo-portage.com Packages]
+**[http://forums.gentoo.org Forums]
+*''Beagleboard''
+**[http://www.elinux.org/BeagleBoard eLinux]
+**[http://groups.google.com/group/beagleboard Google Group]
+*''Pandora''
+**[http://openpandora.org Website]
+**[http://pandorawiki.org/Main_Page Wiki]
+**[http://www.gp32x.com/board/index.php?showforum=61 Forums]
+**[http://openpandora.wordpress.com/ Unofficial Blog]
+*''Touch Book''
+**[http://www.alwaysinnovating.com/touchbook/ Website]
+**[http://www.alwaysinnovating.com/forums/ Forums]
+**[http://www.alwaysinnovating.com/wiki/index.php/Main_Page Wiki]
+
+'''Links'''
+*Hardware
+**[http://www.arm.com/products/CPUs/ARM_Cortex-A8.html TI ARMv7-A Cortex-A8]
+**[http://focus.ti.com/lit/ds/symlink/omap3530.pdf OMAP3530 Datasheet]
+*Software
+**[http://elinux.org/OMAP_Power_Management OMAP Powermanagement]
+**[http://groups.google.com/group/beagleboard/browse_thread/thread/197a8ef6b46cc828 Reduce Sleep Power (8mW)]
