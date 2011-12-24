@@ -1,0 +1,28 @@
+There are some things you'll want to know or configure once it's booted. These will be things we set defaults for just to let it boot up the first time.
+
+=== Root Login ===
+Older images use the password "hellollo", and newer ones use "root" but in the event it does not work, check the image's page or contact the image author. You can also 
+edit the password within /etc/shadow on another machine.
+
+You should change the root password if you plan on using this for "real", and not just to develop another image or goof around for five minutes. To modify the root 
+password, run the following command from a root terminal:
+{{Command|passwd}}
+
+If you are truly using this for regular day-to-day use, then you should create a regular login so you are not all-powerful and all-destructive. Replace $NEWNAME in the 
+command below with the username you wish to log in with.
+{{Command|<nowiki>useradd -m -G users,wheel -s /bin/bash $NEWNAME</nowiki>}}
+We have provided some default groups (users and wheel) in the above command. Here's a nearly complete list of excellent defaults to add yourself too:
+* wheel: for sudo access. You may need to edit /etc/sudoers (via "sudoedit $STORAGE/etc/sudoers") in order for the wheel group to get full access to sudo.
+* uucp: needed for 'screen', and perhaps other utilities
+* audio: obviously, needed for full access to audio
+* video: full access to hardware video acceleration
+* usb: full access to USB devices
+* users: a good one, to declare your login as a regular user login (vs a daemon or system one)
+* plugdev: for auto-mounting external storage, such as USB or SD.
+
+Run passwd to pick a password for this new user:
+{{Command|<nowiki>passwd $NEWNAME</nowiki>}}
+
+=== Binary Repository ===
+We highly recommend you add a binary repository to speed up installation of new and updated software. We provide official binary repositories for the standard Neuvoo 
+profiles. You can find a list of binary repositories, and how to best use them, [[Binary Repositories|here]].
