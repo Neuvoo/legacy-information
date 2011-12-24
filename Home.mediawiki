@@ -16,11 +16,11 @@ Stop by [[Installation|this page]] to get step-by-step instructions on installin
 
 ===== Gentoo Quick Start =====
 
-The [[https://github.com/Neuvoo/information/guide/Gentoo_QuickStart.mediawiki Gentoo Quick Start] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
+The [[Gentoo_QuickStart|Gentoo Quick Start] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
 
 ===== Tools =====
 
-[https://github.com/Neuvoo/user-tools Tools] has additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
+[[User Tools]] has additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
 
 ===== Support =====
 
