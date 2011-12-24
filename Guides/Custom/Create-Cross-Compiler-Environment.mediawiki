@@ -1,0 +1,103 @@
+Setting up a cross-compile environment is a necessity. crossdev often requires some package versions to be installed on the host as what is going to be cross-compiled. 
+This means that, if you are not operating within a chrooted system, you will be installing all kinds of possibly conflicting and unstable packages to your host system!
+
+With a Gentoo installation inside the chroot environment, you can play around with crossdev to your heart's content without fear of breaking your own system. If anything 
+does break, simply reinstall the chrooted environment.
+
+This guide assumes that you will be using a chrooted environment, but you do not have to.  If you do not wish to use a chrooted environment simply skip this step.
+
+== Prerequisites ==
+* Minimal knowledge of chroot, though if you're geeky enough you'll pick this up pretty quickly.
+* Any Linux distribution
+
+== Preparing the Cross-compiler Environment ==
+You'll want to pick a directory somewhere to store things such as the chroot and Neuvoo toolkit, if you chose to use it.
+
+For our examples, we'll use the variable $NV whenever we refer to this directory. Here's our recommended location:
+{{Command|<nowiki>export NV="/usr/local/neuvoo"</nowiki>}}
+
+== Install Environment ==
+The chrooted cross-compile environment is pretty simple. It's just a Gentoo stage3 tarball, inside which you set up crossdev and portage like you would if it was 
+installed to root.  Make sure you get the stage3 compatible with your current system!
+
+First, you need to grab a stage3 tarball from a Gentoo mirror:
+* Visit [http://www.gentoo.org/main/en/mirrors2.xml the Gentoo mirrors page], and pick one.
+* Navigate to the releases directory, pick your architecture, and then navigate through the current/stages directories.
+* Select a stage3 tarball.
+
+Next, you'll want a snapshot of portage.
+* Visit the mirror you previously selected, or [http://www.gentoo.org/main/en/mirrors2.xml a new one].
+* Navigate to the snapshots directory.
+* Select portage-latest.tar.bz2
+
+Now, create the directory that will house your cross-compile environment. We give a recommended location here:
+{{Command|mkdir -p $NV/chroot}}
+
+Extract the stage3 tarball you downloaded to this directory. Replace "x86" with your architecture, and "2008.0" with the version you selected.
+{{Command|tar -xvjpf stage3-x86-2008.0.tar.bz2 -C $NV/chroot}}
+
+Extract the portage snapshot into your cross-compile environment:
+{{Command|tar -xvjf portage-latest.tar.bz2 -C $NV/chroot/usr}}
+
+Lastly, copy resolv.conf, which contains DNS information. (The -L makes sure cp doesn't copy a symlink, but follows it instead.)
+{{Command|cp -L /etc/resolv.conf $NV/chroot/etc/resolv.conf}}
+{{Note|If your DNS information ever changes, you'll want to copy it again.}}
+
+You no longer need to keep the stage3 and portage snapshot tarballs. However, we recommend you at least keep the stage3 around, as they are a pain to download, and you 
+might find yourself constantly recreating your cross-compile environment after making an environmentally hazardous mistake.
+
+== Entering Environment ==
+You will have to prep the cross-compile environment before enter it, to make sure the software is told everything it needs about your system.
+
+First, mount some necessities:
+{{Command|mount -t proc none $NV/chroot/proc}}
+{{Command|mount --rbind /dev $NV/chroot/dev}}
+
+=== Manual Entrance ===
+The cross-compile environment is now ready. Enter it like so:
+* Root terminal:{{Command|chroot $NV/chroot/ /bin/bash}}
+* Using sudo:{{Command|sudo -H chroot $NV/chroot/ /bin/bash}}
+{{Command|env-update && source /etc/profile}}
+
+=== Automated Entrance ===
+Entering your chrooted environment can be largely automated with a little bit of scripting. If you find you use the chroot environment a lot in one session, you can 
+create a script to enter the chroot for you.
+
+Create this file on your existing Linux OS.
+{{File|/bin/neuvoo-shell|<pre>
+#!/bin/bash
+chroot /usr/local/neuvoo/chroot /root/neuvoo-setup
+</pre>}}
+
+This will be executed in the chrooted environment.
+{{File|$NV/root/neuvoo-setup|<pre>
+#!/bin/bash
+echo "Setting environment"
+env-update && source /etc/profile
+export NV="/usr/local/neuvoo"
+cd $HOME
+exec /bin/bash
+</pre>}}
+
+Consider prepending your chroot shells with "(chroot)" so you don't get confused which shells are in chroot and which aren't. This is a particularly good idea if you use 
+su for root access, since it can be hard to distinguish which root shell is the chroot shell.
+{{Command|<nowiki>echo "PS1=(chroot) $PS1" >> $NV/etc/bash/bashrc"</nowiki>}}
+
+Now, when you want to enter your environment, simply execute the following command. This also works great for jailed ssh users, set their shell to /bin/neuvoo-shell and 
+add it to /etc/shells.
+{{Command|neuvoo-shell}}
+{{Note|Be sure to execute this shell as root.}}
+
+== Initialize Emerge ==
+Somehow the "latest" portage is never actually the latest. Run the following command within chroot to bring everything up to date:
+{{Command|emerge --sync}}
+
+If prompted to update the portage software, do so!
+{{Command|emerge -1v portage}}
+
+== Update Environment ==
+In fact, while you're updating stuff, it's a really good idea to update your new chrooted environment to all the latest software before you do anything else:
+{{Command|emerge -uNDav world}}
+
+== Further Reading ==
+You've set up your cross-compiler environment, but now you need the actual cross-compiler. Instructions for building a cross-compiler can be found in the [[Installing Crossdev Tools]] page.
