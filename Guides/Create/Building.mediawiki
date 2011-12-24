@@ -1,0 +1,142 @@
+== Understanding Metro ==
+The documentation on metro is good, and the code is simple enough to grep around and trace, but it's easiest if we explain what we've discovered so far here, risking 
+duplication of information, for clarity.
+
+=== Configuration Structure ===
+Metro stores all of its configuration in /usr/lib/metro. All paths are relative to this.
+
+* etc/: where files go that define configuration every other configuration file will need.
+* etc/metro.conf: this is where metro starts. It defines global locations, and pulls in more configurations (and functionality) via "collect," based on the 
+command-line-defined variables.
+* etc/builds/: where files go that define what kind of build the stages will be. The defaults are either funtoo or gentoo.
+* etc/builds/<type>/build.conf: where this build type's portage and portage tree settings are saved.
+* etc/builds/<type>/multi-targets/: any one of the multi-targets allow you to build more than one stage at a time. The files in this directory simply list what 
+individual targets ought to be built for each multi-target.
+* etc/builds/<type>/multi-targets/strategy/seed/: (as far as I can tell) the files in this directory tell the multi-target exactly how to reach the specified target 
+(like a stage3).
+
+* features/probe.conf: (yet to figure it out, but it's referenced by etc/metro.conf which states that probes are disabled by default)
+
+* metro: the python script that initializes everything. See modules/ for more code.
+
+* misc/locale.gen: (yet to figure it out; the stages use their own locale.gen specified in targets/gentoo/stage/files.spec)
+
+* modules/: where metro's various python has been placed. Since this is not essential to this tutorial, we leave you to discern the functionality. The code is very easy 
+to read, and most, if not all, changes to metro functionality can be done elsewhere in its configuration.
+
+* scripts/: some scripts that make calling metro easier. However, these scripts are useless once the simple metro usage is explained.
+
+* subarch/: every file in this directory explains to metro how to build on a particular architecture. We created an armv7a spec file very easily. You can find it below.
+{{File|subarch/armv7a.spec|<pre>
+[section target]
+
+arch: arm
+
+[section portage]
+
+CFLAGS: -march=armv7-a -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp -fomit-frame-pointer -Os -pipe
+CHOST: armv7a-unknown-linux-gnueabi
+HOSTUSE:</pre>}}
+
+* targets/gentoo/: this directory contains a spec file that explains to metro how to compile a certain target, which can be things like stages or portage snapshots.
+* targets/gentoo/snapshot/: this directory contains some files that tell metro exactly how to get a portage snapshot. The files within this directory are common to all 
+snapshot types.
+* targets/gentoo/snapshot/type/: this directory contains some specifics on how exactly to get a certain snapshot type, such as rsync or git. If you want to change where 
+these go, look to etc/builds/<type>/build.conf instead.
+
+We have not covered all configurations, but we have covered the essentials. Anything we missed will generally be customizations of one of the files or directories listed 
+here. One of the nice things about metro is you can usually open a configuration file and immediately figure out what it's supposed to do.
+
+{{Note|When editing a configuration file, remember that a variable cannot be set more than once. Theoretically it is possible to modify the parser (modules/flex_data.py) 
+to allow this to occur, and indeed it appears the code is already in place to do this, but since it is not enabled by default, and since accidental configuration 
+overlaps will be silently obeyed, we cannot recommend changing the parser's behavior.}}
+
+=== Command-line Usage ===
+Here is the most common command used in metro:
+{{Command|metro multi: yes metro/build: <build> target/subarch: <subarch> target/version: <version> multi/mode: <multi-target>}}
+
+Here's an example command already filled out:
+{{Command|metro multi: yes metro/build: gentoo target/subarch: armv7a target/version: 0.3.0 multi/mode: full}}
+
+Why does the usage look so deep and complex? It's because metro doesn't use regular arguments (--version 0.3.0). Instead, it allows the user to actually define some of 
+the configuration variables right on the command-line. This means that the configuration files access the arguments you pass in the same way they access variables 
+previously set elsewhere in a configuration file. (This might also explain why the arguments above look like they could do a lot more than shown: they are simply filling 
+in the blanks in the configuration.)
+
+Because of this, it is possible to define everything in the configuration files, and simply execute...
+{{Command|metro --}}
+...instead. However, since standard usage is to leave certain configurations unset, we will not explore this further.
+
+== Building a Stage 3 ==
+The best way to learn is to play, and since metro is fairly intuitive, we will explain how to get started by demonstrating how to build a stage3, and then we will leave 
+it to you to explore other options.
+
+We highly recommend you build a simple stage3 before attempting anything else, to get a feel for metro. Once the stage3 is built, and the process explained, it should be 
+much easier to figure out how to accomplish whatever custom builds you have in mind.
+
+=== Running Metro ===
+Begin by building a stage3 on your system. On a 500MHz armv7a processor, building a stage3 took well over 24 hours, so try to pick a fast processor for experimentation. 
+Replace <portage arch here> with the architecture from metro/subarch/ that best matches your system.
+{{Command|metro multi: yes metro/build: gentoo target/subarch: <arch here> target/version: test multi/mode: full}}
+* "multi" turns on the multi-target configuration.
+* "metro/build" tells metro what kind of build we want. We're using stable gentoo, in this case. See metro/etc/builds/ for more build types.
+* "target/subarch" defines the precise architecture we're building for.
+* "target/version" can be anything, but it's best to keep it organized. "test" is a good version, since it's likely this example build will not be a keeper.
+* "multi/mode" defines the precise target. In this case, we're using "full," which means it goes through the entire stage building procedure: stage1, stage2, and then 
+stage3.
+
+Go ahead and execute this command. You'll find it fails very quickly with an error similar to this:
+<pre>Metro Parser: Cannot open file /home/mirror/linux/gentoo/<arch>/.control/strategy/seed specified in variable "$[path/mirror/control:zap]/strategy/seed"</pre>
+
+=== Configuring Metro ===
+So, metro is not entirely prepared for us just yet. Open up metro/etc/metro.conf and make the following modification:
+* Under section path/mirror, change "/home/mirror/linux" to a directory of your choosing. We like setting it to "/var/tmp/metro". Remember this setting because we'll 
+create the directory it points to in a bit.
+{{Note|Notice the syntax is different for this variable. Notice how all the other variables have a name before the colon, but this variable does not. That means this 
+variable's name is the same as the section's. This is perfectly valid, since section names are just a shortcut way of saying "all these variables are prefixed with 
+path/mirror".}}
+
+There is one other configuration change we highly recommend. This tells metro to pull the portage tree from official Gentoo, rather than Funtoo. Open 
+metro/etc/builds/gentoo/build.conf and make the following modifications:
+* Under section multi, change "snapshot: git-snapshot" to "snapshot: snapshot". (This means we don't use git, we use rsync.)
+* Create a new section called rsync, as follows:
+{{File|metro/etc/builds/gentoo/build.conf|<pre>
+[section rsync]
+path: rsync://rsync.gentoo.org/gentoo-portage
+</pre>}}
+* You may also want to change "options: clean/auto" to anything besides "clean/auto" if you want to keep binary and ccache directories around after the stage3 has 
+finished.
+
+=== Creating Metro Directories ===
+Go ahead and create this directory:
+{{Command|mkdir -p <path/mirror variable>/gentoo/<arch>/.control/strategy/}}
+
+In that directory, create a file named "seed" with the word "stage3". This means we want to begin with a stage3, and build the rest of the stages using that. You can 
+browse metro/etc/builds/gentoo/multi-targets/strategy/seed/ for some other seed options. For now, stick to stage3.
+
+In that same directory, create a file named "build" with the word "local". This means we want to use a local stage3, not one pulled from "remote". The "remote" option 
+has not been explored, so it cannot be discussed here yet. See [[#Further Reading]] for some documentation that covers remote stage3's.
+
+Next, create this directory:
+{{Command|mkdir -p <path/mirror variable>/gentoo/<arch>/.control/version}}
+
+Metro will look for a stage3 at the path "<path/mirror variable>/gentoo/<arch>/gentoo-<arch>-<version>/stage3-<arch>-<version>.tar.bz2", so be sure a stage3 tarball for 
+your <arch> is placed here. The <version> piece is saved in the path "<path/mirror variable>/gentoo/<arch>/.control/version/stage3".
+
+You'll want to create the other directories metro needs as well or metro will crash:
+{{Command|mkdir <path/mirror variable>/snapshots/}}
+
+=== Ready, Set, Go! ===
+That should be it. Execute the metro command we set up at the beginning and watch your own system produce a stage3.
+
+Discovering the rest of metro should be relatively simple from here. For finding more specifics, grepping for strings is probably key to finding where things are set up 
+and configured. Since everything is laid out clearly in each file, it's not very difficult to understand where and why configurations are the way they are.
+
+== Further Reading ==
+This document is outdated and wrong in some places, so '''tread with care'''. Nevertheless, it may hold more answers to your metro questions: 
+http://wiki.github.com/funtoo/metro/custombuilds
+
+This document, while up-to-date, is very lean, and our page contains the same and more explanation on the various files and configurations. It does go over remote 
+stage3's, however, which was not covered here: http://www.funtoo.org/en/metro/tutorial/
+
+If you wish to build an image for release on Neuvoo, read [[Packaging to Neuvoo Standards]].

@@ -1,0 +1,125 @@
+{{TOC_right}}
+
+This is the official release for 0.3.0. The features included in this release are:
+
+* Utilize official Gentoo stage3 as baseline for 0.3.0 images.
+* Move as much as possible from /etc/make.conf to custom Neuvoo /usr/portage/profiles
+* Use Metro to build the image.
+* SquashFS portage tree, which is down from 600M to 36M.
+* A lightweight graphical environment
+
+== Status ==
+'''Not yet completed:'''
+Finalizing release
+
+== Standards ==
+This image follows the following common Neuvoo development standards, which are:
+
+* It boots!
+* It is fully reproducible using documentation on this page.
+* Never, ever edit make.conf for profile purposes.
+* All bugs are documented and reported upstream or in Gentoo's bugzilla prior to release.
+
+== Download ==
+See [[Install Pre-Built Image]] for instructions on installing this image.
+
+<dirlist>neuvoo/images/0.3.0/official</dirlist>
+
+How to pick the right file:
+* Decide whether beagle or touchbook best matches the device you wish to run it on. Pandora users will want touchbook. More generic installations can be had with beagle.
+* Select stage5 for a desktop installation, or stage4 if you have different ideas for a desktop. Stage3's are out of scope for this project. Stage3's can be found 
+[http://distfiles.gentoo.org/releases/arm/autobuilds/current-stage3/ here].
+* Download the sha512sum file if you want to verify the files you downloaded are not corrupted. (This is a good idea.)
+
+The root password is the same for all of them. It is "root".
+
+== Roadmap ==
+* We now use Mantis to track our roadmap. See this page: http://neuvoo.org/bugs/roadmap_page.php
+
+== Specifications ==
+These specifications are defaults, and variations are expected to follow them to maintain binary compatibility. However, please check each variation's specifications 
+before assuming they are compatible!
+* Toolchain: armv7a-unknown-linux-gnueabi
+** cc: gcc-4.3.4
+** libc: glibc-2.10.1-r1
+** binutils: binutils-2.19.1-r1
+** headers: linux-headers-2.6.30-r1
+* Binary repository: see [[Binary Repositories]]
+* Bugs: [http://neuvoo.org/bugs http://neuvoo.org/bugs]
+
+== Known Issues ==
+These issues each describe a bug we were unable to fix before releasing 0.3.0. Instructions on how to fix each bug by hand are given.
+
+In all commands, replace $STORAGE with the path to the Neuvoo installation.
+
+=== Pandora in General ===
+The experience of Neuvoo 0.3.0 on a Pandora is not entirely easy. The most annoying problems are because we didn't have a Pandora unit in time to prepare a 
+0.3.0-official variant for the Pandora.
+
+=== [http://neuvoo.org/bugs/view.php?id=39 Bug 39]: xdm starts too early ===
+When Neuvoo is first booted, the user is presented with a login screen. However, there are no users set up, and the root user cannot login here.
+
+Here's how to work around this issue:
+# Before booting up Neuvoo, remove the $STORAGE/etc/runlevels/default/xdm symlink.
+# Once you boot up Neuvoo, you will be presented with a text-based login. Use the root username and password to log in, and follow the post-boot installation 
+instructions that correspond with your device in the [[Install Pre-Built Image]] page.
+# When you've finished with the post-boot installation instructions, add xdm back:
+{{Command|<nowiki>rc-config add xdm default</nowiki>}}
+Reboot when you're ready, and you will be able to log in properly.
+
+=== [http://neuvoo.org/bugs/view.php?id=51 Bug 51]: /etc/conf.d/modules is not complete ===
+Before you can calibrate the screen or use the wifi, at least, you're going to need the following line in /etc/conf.d/modules so they auto-load on startup:
+{{File|/etc/conf.d/modules|<pre>
+modules="omaplfb board-omap3pandora-wifi"
+</pre>}}
+Since you're using the touchbook image, there's an extra "rt3070sta" module mentioned. You can overwrite that with the line given above.
+
+=== [http://neuvoo.org/bugs/view.php?id=41 Bug 41]: touch-screen calibration ===
+On the Pandora, the touch-screen will act strangely until you calibrate it. Before you add xdm back as instructed above, run "ts_calibrate":
+{{Command|<nowiki>TSLIB_TSDEVICE=/dev/input/by-path/platform-omap2_mcspi.1-event TSLIB_CALIBFILE=/etc/pointercal TSLIB_CONSOLEDEVICE=none TSLIB_FBDEVICE=/dev/fb0 
+ts_calibrate</nowiki>}}
+
+Unfortunately, you may not be able to type the _ character due to the Pandora's odd keyboard setup. To work around ''that'', place the command above in a script stored 
+in $STORAGE:
+{{File|/my_ts_calibrate.sh|<pre>
+TSLIB_TSDEVICE=/dev/input/by-path/platform-omap2_mcspi.1-event TSLIB_CALIBFILE=/etc/pointercal TSLIB_CONSOLEDEVICE=none TSLIB_FBDEVICE=/dev/fb0 ts_calibrate
+</pre>}}
+Using the file name example we gave, executing the following commands will do the trick:
+{{Command|<nowiki>sh /my_ts_calibrate.sh</nowiki>}}
+
+=== [http://neuvoo.org/bugs/view.php?id=42 Bug 42]: first graphical login fails ===
+gdm, the login screen you see when you boot up Neuvoo, uses "Failsafe Terminal" as the default session. However, you really want LXDE.
+
+To work around this, the first time you log in, pick LXDE in the session list in the lower-left corner.
+
+=== [http://neuvoo.org/bugs/view.php?id=40 Bug 40]: pandora-extras ===
+If you are using a Pandora, you may want pandora-extras, which "provides configuration for wifi, nubs, LED's, and keyboard". Once you're logged in, run:
+{{Command|<nowiki>echo "sys-apps/pandora-extras" >> /etc/portage/package.keywords/pandora-extras</nowiki>}}
+{{Command|<nowiki>emerge -g sys-apps/pandora-extras</nowiki>}}
+
+=== [http://neuvoo.org/bugs/view.php?id=38 Bug 38]: openntpd's permissions are messed up ===
+ntpd somewhat silently fails to start because ntpd wants precise permissions in /var/lib/openntpd which were not provided by default. You can set these permissions up by 
+running:
+{{Command|<nowiki>chown root -R $STORAGE/var/lib/openntpd/chroot</nowiki>}}
+{{Command|<nowiki>chmod 700 -R $STORAGE/var/lib/openntpd/chroot</nowiki>}}
+If openntpd is already running, you may want to try to restart it now:
+{{Command|<nowiki>/etc/init.d/ntpd restart</nowiki>}}
+
+=== [http://neuvoo.org/bugs/view.php?id=43 Bug 43]: binhost is missing ===
+[[Binary Repositories]] are available, but they became available too late to be included by default in 0.3.0. Visit that page to use one for your own system.
+
+== Package Listing ==
+''Coming soon: a big list of packages and their versions and USE flags here.''
+
+== Included make.conf ==
+{{File|/etc/make.conf|<pre>
+Coming soon: the contents of the make.conf included with the variant.
+</pre>}}
+
+== Configuration Changes and Other Customizations ==
+''Coming soon: a description or list of patches that properly describe any changes made beyond the defaults included with each installed package.''
+
+== Further Reading ==
+For information on how to install an image, see [[Install Pre-Built Image]].
+
+For information on building your own images, see [[Create Image]].
