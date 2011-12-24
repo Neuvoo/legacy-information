@@ -2,7 +2,7 @@
 
 Welcome the Neuvoo project! You can read all about [[About Us|who we are and what our goals are]], or you can use one of the handy links below. If you ever get stuck, find a bug, or have an idea, please join us in conversation in IRC freenode#neuvoo.
 
-We send out a huge [[thanks|Thanks]] to those who helped us, directly or indirectly, by writing documentation, tools, patches or just answering our questions.
+We send out a huge [[Thanks|thanks]] to those who helped us, directly or indirectly, by writing documentation, tools, patches or just answering our questions.
 
 == We're Here to Help! ==
 
@@ -10,17 +10,17 @@ Gentoo isn't always easy to install or mess with. Please use our support channel
 
 == Users ==
 
-===== [https://github.com/Neuvoo/information/install/README.mediawiki Installation] =====
+===== Installation =====
 
-Stop by this page to get step-by-step instructions on installing and configuring a pre-built image.
+Stop by [[Installation|this page]] to get step-by-step instructions on installing and configuring a pre-built image.
 
-===== [https://github.com/Neuvoo/information/guide/Gentoo_QuickStart.mediawiki Gentoo Quick Start] =====
+===== Gentoo Quick Start ====
 
-This page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
+The [[https://github.com/Neuvoo/information/guide/Gentoo_QuickStart.mediawiki Gentoo Quick Start] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
 
-===== [https://github.com/Neuvoo/user-tools Tools] =====
+===== Tools ====
 
-Additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
+[https://github.com/Neuvoo/user-tools Tools] has additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
 
 ===== Support =====
 
@@ -28,10 +28,10 @@ Please use the appropriate git repository when reporting an issue, or you can re
 
 == Developers ==
 
-===== [https://github.com/Neuvoo/information/developers/Create_Image.mediawiki Create Image] =====
+===== Custom Images ====
 
-You've seen all the Pre-built images available, but you want to create your own. That's reasonable. We understand that. We created a tutorial to guide you through the process we figured out ourselves, from creating the cross-compiler to packaging up a final image.
+You've seen all the Pre-built images available, but you want to create your own. That's reasonable. We understand that. We created a [[Custom Image|tutorial]] to guide you through the process we figured out ourselves, from creating the cross-compiler to packaging up a final image.
 
-===== [https://github.com/Neuvoo/information/misc/Documentation_Guidelines.mediawiki Documentation Guidelines] =====
+===== Documentation Guidelines =====
 
-There are certain areas of our wiki that need to remain consistent so it is easy to organize and reuse information.
+There are certain areas of our wiki that need to remain consistent so it is easy to organize and reuse information, please check out our [[Documentation Guidelines]] for common and consistant nomenclature especially if you wish to contribute.
