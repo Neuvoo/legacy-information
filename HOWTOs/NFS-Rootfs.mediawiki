@@ -1,0 +1,153 @@
+== Introduction ==
+This guide is intended for users that want to use their device with a root filesystem on a host, using NFS as the transport.  This may be advantageous if you are doing a 
+lot of development, testing images, or tweaking an image prior to writing the finished product to an SD card or NAND.
+
+== Assumptions ==
+# You have your device connected to the host by either usb or ethernet.
+# You have basic understanding of Linux file structure and permissions.
+# You have root access to the host server.
+
+== Variables ==
+The following variables are used through this guide and should be changed according to the user's preferences and situation.
+{|
+|-
+|$CLIENTIP||192.168.0.201||IP Address of the client device.
+|-
+|$CLIENTNAME||diskless-beagle||DNS/host name for the client device.
+|-
+|$SERVERIP||192.168.0.1||IP Address of the server that will be hosting the image.
+|-
+|$NETDEV||eth0 (or usb0)||Name of the networking device being used on the client.
+|-
+|$ROOTFS||/opt/netimages/neuvoo-0.3.0-beagle||Dirctory on server where the client root filesystem will be hosted from.
+|}
+
+== Configure Server ==
+If your distribution's specific instructions are not below you can either attempt to translate the instructions to make them applicable to your system or a quick web 
+search will often show you satisfactory examples.
+
+Overall things that will be needed...
+# DHCP/BOOTP: dnsmasq or dhcp
+# TFTP: dnsmasq or tftp-hpa
+# NFS: nfs-utils
+
+=== Installation ===
+
+==== Gentoo ====
+{{Command|<nowiki>USE="dhcp tftp" emerge -av dnsmasq nfsutils</nowiki>}}
+
+=== Server Kernel ===
+{{Kernel|2.6.xx|<pre>
+Code maturity level options  --->
+  [*] Prompt for development and/or incomplete code/drivers
+
+Device Drivers --->
+  Networking options --->
+    <*> Packet socket
+    <*> Unix domain sockets
+    [*] TCP/IP networking
+    [*]   IP: multicasting
+    [ ] Network packet filtering (replaces ipchains)
+
+File systems --->
+  Network File Systems  --->
+    <*> NFS server support
+    [*]   Provide NFSv3 server support
+
+
+If you want to access the internet through your master node and/or have a
+secure firewall make sure to add support for iptables
+
+  [*] Network packet filtering (replaces ipchains)
+  IP: Netfilter Configuration  --->
+    <*> Connection tracking (required for masq/NAT)
+    <*> IP tables support (required for filtering/masq/NAT)
+</pre>}}
+
+=== Install Image ===
+You can grab the applicable image for your system [http://neuvoo.org/neuvoo/images/ here].  If you do not know what is applicable to you, you can talk to the Neuvoo 
+Community or Devs on IRC Freenode#neuvoo
+
+Download Image (This is for the neuvoo-0.3.0-beagle stage5)
+{{Command|wget http://neuvoo.org/neuvoo/images/0.3.0/official/neuvoo-0.3.0-official-stage5-beagle-20100730.tar.bz2}}
+
+Create $ROOTFS
+{{Command|mkdir -p /opt/netimages/neuvoo-0.3.0-beagle}}
+
+Unpack image
+{{Command|tar --numeric-owner -xvjf neuvoo-0.3.0-official-stage5-beagle-20100730.tar.bz2 -C /opt/netimages/neuvoo-0.3.0-beagle}}
+
+=== Dnsmasq ===
+Configure dnsmasq. (Change eth0 here to match the '''server's''' networking device)
+{{File|/etc/dnsmasq.conf|<pre>
+interface=eth0
+enable-tftp
+tftp-root=/opt/netimages/
+dhcp-range=192.168.0.201,192.168.0.210,72h
+dhcp-host=00:01:23:45:67:89,diskless-beagle
+</pre>}}
+
+Configure /etc/hosts
+{{File|/etc/hosts|<pre>
+192.168.0.201        diskless-beagle
+</pre>}}
+
+=== NFS ===
+Add and configure client root fs to exports list.
+{{File|/etc/exports|<pre>
+/opt/netimages/neuvoo-0.3.0-beagle diskless-beagle(rw,no_root_squash,no_all_squash,async) 
+</pre>}}
+
+== Configure Client ==
+
+=== Client Kernel ===
+{{Kernel|2.6.xx|<pre>
+Code maturity level options  --->
+  [*] Prompt for development and/or incomplete code/drivers
+
+Device Drivers --->
+  [*] Networking support
+  Networking options --->
+    <*> Packet socket
+    <*> Unix domain sockets
+    [*] TCP/IP networking
+    [*]   IP: multicasting
+    [*]   IP: kernel level autoconfiguration
+    [*]     IP: DHCP support (NEW)
+
+File systems --->
+  Network File Systems  --->
+    <*> file system support
+    [*]   Provide NFSv3 client support
+    [*]   Root file system on NFS
+</pre>}}
+
+=== Networking ===
+Add initscripts to runlevels (change net.eth0 to match the correct networking device)
+{{Command|cd /opt/netimages/neuvoo-0.3.0-beagle/etc/runlevels}}
+{{Command|ln -s ../init.d/net.lo ../init.d/net.eth0}}
+{{Command|ln -s ../init.d/net.eth0 ./default/}}
+{{Command|ln -s ../init.d/nfs ./default/}}
+{{Command|ln -s ../init.d/nfsmount ./default/}}
+
+==== Ethernet ====
+Edit /etc/conf.d/net to remove initialization of eth0 by openrc.
+{{File|/etc/conf.d/net|<pre>
+config_eth0="noop"
+</pre>}}
+
+==== USB ====
+Please go to the Neuvoo [[USB_(Networking)|USB (Networking)]] guide for further instruction.
+
+=== /etc/fstab ===
+Edit fstab to have root set correctly.
+{{File|/opt/netimages/neuvoo-0.3.0-beagle/etc/fstab|<pre>
+192.168.0.1:/opt/netimages/neuvoo-0.3.0-beagle   /         nfs     sync,hard,intr,rw,nolock,rsize=1024,wsize=1024    0 0
+</pre>}}
+
+== Boot ==
+=== Configure U-Boot ===
+Do the following commands within U-Boot '''prior''' to booting the kernel.  (Change to match your system)
+{{Command|<nowiki>setenv bootargs 'console=ttyS2,115200n8 noinitrd root=/dev/nfs rw nfsroot=192.168.0.1:/opt/netimages/neuvoo-0.3.0-beagle 
+ip=192.168.0.201::255.255.255.0 nolock,rsize=1024,wsize=1024 rootdelay=2'</nowiki>}}
+{{Command|saveenv}}

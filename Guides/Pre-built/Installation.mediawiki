@@ -86,10 +86,10 @@ if you want another device to use the Pandora's Internet connection.
 
 === TouchBook ===
 TODO
-([[Squashfs]] needs refactoring too.)
+([[Squashfs Rootfs]] needs refactoring too.)
 
 === BeagleBoard ===
-TODO ([[NFS]] requires more editing)
+TODO ([[NFS Rootfs]] requires more editing)
 
 ==== Pre-Boot Configuration ====
 Follow [[Pre-Boot Configuration]].
