@@ -14,11 +14,11 @@ Gentoo isn't always easy to install or mess with. Please use our support channel
 
 Stop by [[Installation|this page]] to get step-by-step instructions on installing and configuring a pre-built image.
 
-===== Gentoo Quick Start ====
+===== Gentoo Quick Start =====
 
 The [[https://github.com/Neuvoo/information/guide/Gentoo_QuickStart.mediawiki Gentoo Quick Start] page demonstrates the different ways Gentoo handles things, which simultaneously shows why Gentoo is awesome, and how to use it.
 
-===== Tools ====
+===== Tools =====
 
 [https://github.com/Neuvoo/user-tools Tools] has additional tools made by us to make your Gentoo experience better on your mobile/embedded platform.
 
@@ -28,7 +28,7 @@ Please use the appropriate git repository when reporting an issue, or you can re
 
 == Developers ==
 
-===== Custom Images ====
+===== Custom Images =====
 
 You've seen all the Pre-built images available, but you want to create your own. That's reasonable. We understand that. We created a [[Custom Image|tutorial]] to guide you through the process we figured out ourselves, from creating the cross-compiler to packaging up a final image.
 
