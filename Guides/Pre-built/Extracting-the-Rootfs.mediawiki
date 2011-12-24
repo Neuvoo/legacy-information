@@ -1,0 +1,10 @@
+Download one of the [[Pre-built Images]] that best matches your device.
+
+Next, look at the following command.
+{{Command|<nowiki>tar --numeric-owner -xvpf $IMAGE -C $STORAGE</nowiki>}}
+You'll want to do these things first before running it:
+* Replace $IMAGE with the name of the pre-built image. It should look something like "neuvoo-1.0-official-stageX-device.tar.bz2".
+* Replace $STORAGE with a path to the device storage. If you've got an SD card plugged into your computer or device, it should be under /media/ or /mnt/. When you're 
+done, this part should look something like "/media/neuvoo-sd-card/".
+
+Extraction can take a while. Good time to crack open that beer you got earlier.
