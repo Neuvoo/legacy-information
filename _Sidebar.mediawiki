@@ -1,13 +1,13 @@
 '''Get Neuvoo!'''
 *[[Pre-Built Images]]
-*[[Install]]
+*[[Installation|Install Neuvoo]]
 *[[Kernels]]
 *[[Binaries]]
 
 '''Wiki'''
-*[[README|Main Page]]
-*[[HOWTO/README|HOWTO]]
-*[[Tools|Tools]]
+*[[Home]]
+*[[HOWTOs]]
+*[[Tools]]
 *[[Platforms]]
 *[[Projects]]
 
