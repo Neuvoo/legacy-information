@@ -21,7 +21,7 @@ __TOC__
 === Pandora ===
 
 ==== Formatting ====
-Follow the instructions under [[Generic Formatting]].
+Follow the instructions under [[Bootdisk Formatting]].
 ==== Extracting the Rootfs ====
 Follow the instructions under [[Extracting the Rootfs]].
 ==== Configuring Boot ====
