@@ -13,7 +13,7 @@
 
 '''Team Neuvoo'''
 *[http://groups.google.com/group/neuvoo Mailing List]
-*IRC @ Freenode#neuvoo
+*[http://neuvoo.org:9090/?channels=neuvoo IRC @ Freenode#neuvoo]
 
 '''Communities'''
 *''Gentoo''
