@@ -1,3 +1,7 @@
+[[neuvoo.png]]
+
+__NOTOC__
+
 == Welcome ==
 
 Welcome the Neuvoo project! You can read all about [[About Us|who we are and what our goals are]], or you can use one of the handy links below. If you ever get stuck, 
