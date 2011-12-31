@@ -1,7 +1,7 @@
 == Overview ==
 There are a wide variety of Linux kernels available for most devices.  The issue can often be that your current kernel is old and/or doesn't support XX device and you are interested in seeing what is available.  The solution may be to compile your own, use a different variant, or just stick to the most functional kernel that *works*.  As kernel branches are developed the Neuvoo developers will do their best to list, track major differences, and provide instructions for the user to install and/or compile that kernel.  Therefore we have separated the kernels into 3 major groups: Neuvoo, Proprietary, and Source.  Neuvoo kernels are supported by us and will be aligned to a specific kernel source tree with additional patches also managed by the Neuvoo developer team to add functionality intended for use with our [[Pre-Built Images]].  Proprietary kernels are often made or distributed by a certain hardware manufacturor for a specific device or created for a specific Linux distribution.  Source kernels are specific kernel branches which often are the most current but *may* not work and *will* require more user envolvement to use.
 
-=== Neuvoo ===
+== Neuvoo ==
 ; [[Kernel-OMAP-Neuvoo-Beagleboard]]
 ; Description
 : Neuvoo Beagleboard & Clones Kernel
@@ -12,9 +12,11 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : aufs, squashfs, usb otg.
 
-=== Proprietary ===
+== Proprietary ==
 
-==== Angstrom ====
+----
+=== Angstrom ===
+----
 ; [[Kernel-OMAP-Angstrom-Beagleboard]]
 ; Description
 : Angstrom Distribution's OMAP Beagleboard demo kernel
@@ -25,6 +27,7 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : usb otg.
 
+----
 ; [[Kernel-OMAP-Angstrom-Pandaboard]]
 ; Description
 : Angstrom Distribution's OMAP Pandaboard demo kernel
@@ -35,7 +38,9 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : usb otg.
 
-==== OpenPandora ====
+----
+=== OpenPandora ===
+----
 ; [[Kernel-OMAP-OpenPandora]]
 ; Description
 : OpenPandora's OMAP kernel, variant of tmlind's OMAP kernel
@@ -46,7 +51,9 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : touchscreen, usb otg.
 
-==== Touchbook ====
+----
+=== Touchbook ===
+----
 ; [[Kernel-OMAP-Touchbook]]
 ; Description
 : Always Innovating's OMAP kernel, variant of tmlind's OMAP kernel
@@ -57,8 +64,11 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : aufs, squashfs, touchscreen, accelerometer, ralink wifi, cpu scaling, dss2, initramfs, usb otg.
 
-=== Source ===
-==== tmlind's OMAP branch ====
+== Source ==
+
+----
+=== tmlind's OMAP branch ===
+----
 ; [[Kernel-OMAP-tmlind|tmlind's OMAP kernel branch]]
 ; Description
 : Often sync'ed to the main Linux tree and the branch which most ARM variants deviate from
@@ -69,7 +79,9 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : full spectrum
 
-==== OpenPandora's OMAP branch ====
+----
+=== OpenPandora's OMAP branch ===
+----
 ; [[Kernel-OMAP-OpenPandora-Sources]]
 ; Description
 : Often sync'ed to tmlind's branch
