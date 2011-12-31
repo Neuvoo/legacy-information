@@ -1,0 +1,12 @@
+== Overview ==
+Even though Neuvoo is Gentoo-based, and Gentoo is mostly called a "Source-based" distribution, it is extremely easy to enable and use a binary repository.  Neuvoo currently breaks down the binary repos by target devices.  This is done because certain Pre-Built Images use different cflags and USE flags and therefore there could be potential bugs, errors, and incompatability introduced.  Please make sure that you select the binary repository that best fits your device and use.
+
+== Beagle ==
+; [[Binrepo-Beagleboard]]
+; Description
+: Generic binrepo to be used by Beagleboard and clones along with minimalist installs.
+
+== Touchbook ==
+; [[Binrepo-Touchbook]]
+; Description
+: Touchbook binrepo intended for use for the Touchbook.  Includes touchscreen support.
