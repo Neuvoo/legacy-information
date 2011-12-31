@@ -1,0 +1,23 @@
+== Prerequisites ==
+* Neuvoo overlay
+
+== Variables ==
+* /dev/mmcblk0p1 is boot filesystem mounted @ /boot
+* /dev/mmcblk0p2 is root filesystem mounted @ /
+
+== Download ==
+```bash
+emerge -av neuvoo-beagleboard-kernel
+```
+
+== Installing ==
+
+''Kernel''
+```bash
+cp /usr/lib/neuvoo/neuvoo-beagleboard-kernel.bin /boot/uImage
+```
+
+''Modules''
+```bash
+tar -xvjpf /usr/lib/neuvoo/neuvoo-beagleboard-kernel-modules.tar.bz2 -C /
+```

@@ -14,12 +14,12 @@ emerge -av angstrom-kernel-beagleboard
 
 ''Kernel''
 ```bash
-cp /usr/lib/neuvoo/angstrom-kernel-beagleboard.bin /boot/uImage
+cp /usr/lib/neuvoo/angstrom-beagleboard-kernel.bin /boot/uImage
 ```
 
 ''Modules''
 ```bash
-tar -xvjpf /usr/lib/neuvoo/angstrom-kernel-beagleboard-modules.tar.bz2 -C /
+tar -xvjpf /usr/lib/neuvoo/angstrom-beagleboard-kernel-modules.tar.bz2 -C /
 ```
 
 == Further Reading ==
