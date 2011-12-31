@@ -2,16 +2,11 @@ In an effort to recognize those who we have benefited from, this page was create
 
 We send out our thanks to...
 
-* ...the folks at the [http://www.gentoo.org/proj/en/base/embedded/ Gentoo Embedded project], for giving us an introduction into the world of cross-compiling. Without 
-them, our project would have died in its first steps. They gave us their attention and knowledge when we asked. Recently they have also indirectly helped us out by 
-creating official stage3's, allowing us to focus on supporting that stage3 in specific devices.
-* ...the [http://beagleboard.org/ BeagleBoard] project, for developing one of the first OMAP3530 devices available, allowing us to develop and test images prior to the 
-Pandora's first batch shipment, rather than after.
-* ...the [http://git.kernel.org/?p=linux/kernel/git/tmlind/linux-omap-2.6.git;a=summary omap3 kernel developers], for their excellent work on making OMAp devices work, 
-and their continuous efforts towards getting the OMAP devices fully supported by mainline kernel.
+* ...the folks at the [http://www.gentoo.org/proj/en/base/embedded/ Gentoo Embedded project], for giving us an introduction into the world of cross-compiling. Without them, our project would have died in its first steps. They gave us their attention and knowledge when we asked. Recently they have also indirectly helped us out by creating official stage3's, allowing us to focus on supporting that stage3 in specific devices.
+* ...the [http://beagleboard.org/ BeagleBoard] project, for developing one of the first OMAP3530 devices available, allowing us to develop and test images prior to the Pandora's first batch shipment, rather than after.
+* ...the [http://git.kernel.org/?p=linux/kernel/git/tmlind/linux-omap-2.6.git;a=summary omap3 kernel developers], for their excellent work on making OMAp devices work, and their continuous efforts towards getting the OMAP devices fully supported by mainline kernel.
 * ...the [http://www.angstrom-distribution.org/ The Ångström Distribution] and [http://www.openembedded.org/ OpenEmbedded] guys for their work and patches.
 * ...Stephan Kulow for his patient replies to questions. Without him, [[Icecream]] would have long since been considered an impossibility.
-* ...the metro developers at [http://funtoo.org/ Funtoo] for their excellent software. Without metro, instructions like [[0.0.3/base#Build_Instructions|these]] and the 
-buggy releases that would often result from them would still be haunting us to this day. Metro has been a major part of our technical success.
+* ...the metro developers at [http://funtoo.org/ Funtoo] for their excellent software. Without metro, instructions like [[0.0.3/base#Build_Instructions|these]] and the buggy releases that would often result from them would still be haunting us to this day. Metro has been a major part of our technical success.
 
 Many contributions not listed here can also be found in our [https://github.com/Neuvoo/overlay Overlay] repositories.

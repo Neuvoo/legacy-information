@@ -5,20 +5,16 @@ The guidelines will describe what content should fit in that kind of page, while
 === Common Guidelines ===
 * Any page which is still a work in progress must have the WorkInProgress template placed at the top page.
 * Any page which is obsolete but kept for archival purposes must have the Obsolete template placed at the top page.
-* If a hierarchy of pages is incomplete or obsolete, the appropriate template is only required for the top page, assuming all the pages in the hierarchy are tightly 
-linked (for example, tutorials).
+* If a hierarchy of pages is incomplete or obsolete, the appropriate template is only required for the top page, assuming all the pages in the hierarchy are tightly linked (for example, tutorials).
 
-* An appropriate category should be applied to the page. If there are a hierarchy of pages below it, the pages below do not need the category unless they are of a 
-different type.
+* An appropriate category should be applied to the page. If there are a hierarchy of pages below it, the pages below do not need the category unless they are of a different type.
 
 === Generic Page Types ===
 * A page is simply informing the user of information or facts. They rarely provide instructions.
 
 * The HOWTO is a series of instructions.
 ** If it is extensive, it can be split into sub-pages.
-** At the beginning, it should always include a description about its goals and the end result. It should always have prerequisites that alert the user to what they 
-should already have for hardware, software, or knowledge before they continue. It and its subpages, if they exist, can be referred to from any other page without 
-confusion.
+** At the beginning, it should always include a description about its goals and the end result. It should always have prerequisites that alert the user to what they should already have for hardware, software, or knowledge before they continue. It and its subpages, if they exist, can be referred to from any other page without confusion.
 
 === Release Page ===
 * Release pages describe a particular release of Gentoo for Pandora. It has the following details:
@@ -36,5 +32,4 @@ confusion.
 ** This variant should also link back to the image(s) it was based off of, if any.
 
 === Miscellaneous ===
-* The Note and Warning boxes within a page are used to bring in content that does not warrant its own header, and is not necessary for completing the instructions or 
-understanding the page content. (It might also include content that does not necessarily fit in any particular paragraph.)
+* The Note and Warning boxes within a page are used to bring in content that does not warrant its own header, and is not necessary for completing the instructions or understanding the page content. (It might also include content that does not necessarily fit in any particular paragraph.)

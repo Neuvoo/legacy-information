@@ -1,0 +1,9 @@
+== 0.3.0 ==
+=== armv7a-unknown-linux-gnueabi ===
+==== official ====
+Image Location: [http://neuvoo.org/neuvoo/images/0.3.0/official http://neuvoo.org/neuvoo/images/0.3.0/official]
+Supported Platforms: Beagleboard (and direct clones) & Touchbook.
+Description:
+  Continuation of gentoo stage3s with package additions only to enable major user functionality.
+  stage4 - Gentoo stage3 with additional packages to enable direct bootup and network connectivity.
+  stage5 - stage4 + LXDE, chromium, NetworkManager.
