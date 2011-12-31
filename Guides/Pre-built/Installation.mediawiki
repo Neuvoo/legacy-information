@@ -32,7 +32,7 @@ If you followed our recommendations of using a single ext3 partition for the ent
 setenv bootargs root=/dev/mmcblk0p1 rw rootdelay=2 vram=6272K omapfb.vram=0:3000K quiet
 ext2load mmc 0:1 0x80300000 /boot/uImage
 bootm 0x80300000
-````
+```
 
 However, if you decided to install Neuvoo somewhere besides the first partition on the left SD card, you will need to adjust "root=/dev/mmcblk0p1" to point to the correct partition. The "0" in "mmcblk0" refers to the first SD card, and "mmcblk1" refers to the second. After that, "p1" refers to the first partition of that card, "p2" to the second, and so on.
 
