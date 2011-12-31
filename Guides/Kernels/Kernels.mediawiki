@@ -13,8 +13,6 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 : aufs, squashfs, usb otg.
 
 == Proprietary ==
-
-----
 === Angstrom ===
 ----
 ; [[Kernel-OMAP-Angstrom-Beagleboard]]
@@ -38,7 +36,6 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : usb otg.
 
-----
 === OpenPandora ===
 ----
 ; [[Kernel-OMAP-OpenPandora]]
@@ -51,7 +48,6 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : touchscreen, usb otg.
 
-----
 === Touchbook ===
 ----
 ; [[Kernel-OMAP-Touchbook]]
@@ -66,7 +62,6 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 
 == Source ==
 
-----
 === tmlind's OMAP branch ===
 ----
 ; [[Kernel-OMAP-tmlind|tmlind's OMAP kernel branch]]
@@ -79,7 +74,6 @@ There are a wide variety of Linux kernels available for most devices.  The issue
 ; Functionality
 : full spectrum
 
-----
 === OpenPandora's OMAP branch ===
 ----
 ; [[Kernel-OMAP-OpenPandora-Sources]]
