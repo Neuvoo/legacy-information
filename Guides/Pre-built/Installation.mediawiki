@@ -56,7 +56,8 @@ Now, you need to copy the kernel bits into your Neuvoo installation. In the foll
 ```bash
   cp -r pandora-rootfs/boot/uImage* $STORAGE/boot
 ```
-`pandora-rootfs/boot/uImage is a symlink last we checked. Make sure $STORAGE/boot/uImage is a symlink when you're done copying.`
+
+''pandora-rootfs/boot/uImage is a symlink last we checked. Make sure $STORAGE/boot/uImage is a symlink when you're done copying.''
 
 ```bash
   cp -r pandora-rootfs/lib/modules $STORAGE/lib
@@ -68,11 +69,15 @@ Follow [[Pre-Boot Configuration]], with the following notes:
 
 The official OS does not save time as UTC on shutdown, but as local. Gentoo needs to know about this. When you edit hwclock, change this:
 ; $STORAGE/etc/conf.d/hwclock
-: clock="UTC"
+```bash
+  clock="UTC"
+```
 
 ...to this:
 ; $STORAGE/etc/conf.d/hwclock
-: clock="local"
+```bash
+  clock="local"
+```
 
 ==== Post-Boot Configuration ====
 Follow [[Post-Boot Configuration]].
@@ -90,4 +95,6 @@ Follow [[Pre-Boot Configuration]].
 
 After that, inside /etc/inittab, change the line starting with "s2" (or add the line) if you've configured your bootargs to use ttyS2 as recommended:
 ; /etc/inittab
-: s2:2345:respawn:/sbin/agetty 115200 ttyS2 vt102
+```bash
+s2:2345:respawn:/sbin/agetty 115200 ttyS2 vt102
+```
