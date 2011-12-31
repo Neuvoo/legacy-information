@@ -1,51 +1,52 @@
-As much as we'd like to give you an image that you can just simply boot and log into, we can't (yet). There is some configuration you will have to do. We have minimized 
-this as much as possible, but for everything else, there's instructions below.
+As much as we'd like to give you an image that you can just simply boot and log into, we can't (yet). There is some configuration you will have to do. We have minimized this as much as possible, but for everything else, there's instructions below.
 
 Wherever $STORAGE is mentioned, replace it with a path to the device storage where you've extracted the pre-built image.
 
 === etc-update ===
 Some images do not have their configurations fully updated yet. Verify that all configurations are updated by running:
-{{Command|<nowiki>ROOT=$STORAGE etc-update</nowiki>}}
-{{Note|dispatch-conf may be easier to use, but it does not yet support ROOT.}}
+```bash
+ROOT=$STORAGE etc-update
+```
+''dispatch-conf may be easier to use, but it does not yet support ROOT.''
 
 === Time ===
-We left the timezone to the Gentoo default, which is currently "localtime" (i.e. no time-zone adjustments). It's highly recommended, if not necessary, that you change 
-this, as follows:
-{{Command|<nowiki>ln -sf /usr/share/zoneinfo/path/to/TimeZone $STORAGE/etc/localtime</nowiki>}}
+We left the timezone to the Gentoo default, which is currently "localtime" (i.e. no time-zone adjustments). It's highly recommended, if not necessary, that you change this, as follows:
+```bash
+ln -sf /usr/share/zoneinfo/path/to/TimeZone $STORAGE/etc/localtime
+```
 While it may seem weird to link to absolute path "/usr" on your host machine, remember that, when you boot this image, $STORAGE will become / (root).
 
 Edit $STORAGE/etc/conf.d/hwclock as desired. Defaults should be OK.
-{{Command|<nowiki>nano $STORAGE/etc/conf.d/hwclock</nowiki>}}
+```bash
+nano $STORAGE/etc/conf.d/hwclock
+```
 
 === Swap ===
-Swap is always a good idea, even if you have plenty of RAM. Linux uses every bit of memory it gets efficiently, so it will generally not use swap unless it must, and at 
-that point you will be happy swap was there to keep everything running.
+Swap is always a good idea, even if you have plenty of RAM. Linux uses every bit of memory it gets efficiently, so it will generally not use swap unless it must, and at that point you will be happy swap was there to keep everything running.
 
-In this example I am making a 512MB swapfile. The count variable is in KB, so multiply by 1024 for each MB of SWAP you wish to have, and leave everything else alone. You 
-can pick a smaller amount if you feel this is too much.
-{{Command|<nowiki>dd if=/dev/zero of=$STORAGE/swapfile bs=1024 count=524288</nowiki>}}
-{{Command|<nowiki>mkswap -L SWAP $STORAGE/swapfile</nowiki>}}
+In this example I am making a 512MB swapfile. The count variable is in KB, so multiply by 1024 for each MB of SWAP you wish to have, and leave everything else alone. You can pick a smaller amount if you feel this is too much.
+```bash
+dd if=/dev/zero of=$STORAGE/swapfile bs=1024 count=524288
+mkswap -L SWAP $STORAGE/swapfile
+```
 
 If you want to automatically load this swapfile at boot, add this line to the fstab on the Neuvoo installation:
-{{File|$STORAGE/etc/fstab|<pre>
+; $STORAGE/etc/fstab
+```bash
 /swapfile               none            swap            sw              0 0
-</pre>
-{{Note|The tool "mount" cannot actually mount this. Gentoo will automatically mount swap for you, but in the event you want to mount/unmount it by hand, use swapon and 
-swapoff.}}
-}}
+```
+''The tool "mount" cannot actually mount this. Gentoo will automatically mount swap for you, but in the event you want to mount/unmount it by hand, use swapon and swapoff.''
 
 === /etc/fstab ===
-Assuming you're using a simple setup with one partition for root, the only file-system you need listed is shm. The root file-system will already be mounted, so 
-specifying it in the fstab means it's harmlessly but unnecessarily mounted twice.
+Assuming you're using a simple setup with one partition for root, the only file-system you need listed is shm. The root file-system will already be mounted, so specifying it in the fstab means it's harmlessly but unnecessarily mounted twice.
 
 In other words, find the sample entries /dev/BOOT, /dev/ROOT, /dev/SWAP, and so on, and prepend them with the number sign ("#"), like this:
-{{File|$STORAGE/etc/fstab|<pre>
+; $STORAGE/etc/fstab
+```bash
 #/dev/BOOT               /boot           ext2            noauto,noatime  1 2
-</pre>
-}}
+```
 
 === /etc/locale.gen ===
-This file determines what languages are supported by your system. There are instructions inside the file on how to add the languages you want. Make the edits you want 
-and save the file when you're done.
+This file determines what languages are supported by your system. There are instructions inside the file on how to add the languages you want. Make the edits you want and save the file when you're done.
 
 Remember later to run "locale-gen" once you've booted Neuvoo up if you changed this file.
