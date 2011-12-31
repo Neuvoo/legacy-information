@@ -1,0 +1,58 @@
+== Prerequisites ==
+* dev-util/git
+* dev-embedded/u-boot-tools
+
+''If you are using crossdev environment then replace all instances of 'make' with 'cross-make'!''
+
+== Variables ==
+* /dev/mmcblk0p1 is boot filesystem mounted @ /boot
+* /dev/mmcblk0p2 is root filesystem mounted @ /
+''If you are not compiling this on the device make sure to use different mount paths!!!''
+
+== Download ==
+```bash
+cd /usr/src/
+git clone http://git.kernel.org/pub/scm/linux/kernel/git/tmlind/linux-omap.git
+ln -s /usr/src/linux-omap /usr/src/linux
+```
+
+== Configuration ==
+
+```bash
+cd linux-omap
+make omap3_beagle_defconfig
+make menuconfig
+```
+
+Edit accordingly!
+
+== Compiling ==
+
+''Kernel''
+```bash
+make uImage
+```
+
+''Modules''
+```bash
+make modules
+```
+
+== Installing ==
+
+''Kernel''
+```bash
+cp uImage /boot
+```
+
+''Modules''
+```bash
+make modules_install
+```
+''use make INSTALL_MOD_PATH="/dir/path/" modules_install for a different install path''
+
+== Further Reading ==
+* '''Kernel:''' [http://git.kernel.org/?p=linux/kernel/git/tmlind/linux-omap-2.6.git;a=summary Linux-OMAP-git]
+* '''Patches:''' [http://cgit.openembedded.net/cgit.cgi?url=openembedded/tree/packages/linux OE-git]
+* '''Patches:''' [http://git.openpandora.org/cgi-bin/gitweb.cgi?p=pandora-u-boot.git;a=summary Pandora-git]
+* '''Patches (2.6.27):''' [http://cgit.openembedded.net/cgit.cgi?url=openembedded/tree/packages/linux/linux-omap-2.6.27&id=dba153e51695d71eec91123468c9ca9ddc97b9dc Pandora-kernel-patches]

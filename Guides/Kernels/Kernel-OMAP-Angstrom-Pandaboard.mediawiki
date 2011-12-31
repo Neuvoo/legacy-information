@@ -1,0 +1,26 @@
+== Prerequisites ==
+* Neuvoo overlay
+
+== Variables ==
+* /dev/mmcblk0p1 is boot filesystem mounted @ /boot
+* /dev/mmcblk0p2 is root filesystem mounted @ /
+
+== Download ==
+```bash
+emerge -av angstrom-kernel-pandaboard
+```
+
+== Installing ==
+
+''Kernel''
+```bash
+cp /usr/lib/neuvoo/angstrom-kernel-pandaboard.bin /boot/uImage
+```
+
+''Modules''
+```bash
+tar -xvjpf /usr/lib/neuvoo/angstrom-kernel-pandaboard-modules.tar.bz2 -C /
+```
+
+== Further Reading ==
+* '''Kernel:''' [http://www.angstrom-distribution.org/demo/pandaboard/]
