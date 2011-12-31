@@ -27,11 +27,13 @@ Ah, yes, now things become interesting. Pandora uses a boot.txt u-boot script. T
 Wherever boot.txt lands, it needs to end up on the '''first''' partition of the SD card that you will insert into the '''left''' SD card slot on your Pandora.
 
 If you followed our recommendations of using a single ext3 partition for the entire card, boot.txt is very simple to set up:
-{{File|/boot.txt|<pre>
+; /boot.txt
+```bash
 setenv bootargs root=/dev/mmcblk0p1 rw rootdelay=2 vram=6272K omapfb.vram=0:3000K quiet
 ext2load mmc 0:1 0x80300000 /boot/uImage
 bootm 0x80300000
-</pre>}}
+````
+
 However, if you decided to install Neuvoo somewhere besides the first partition on the left SD card, you will need to adjust "root=/dev/mmcblk0p1" to point to the correct partition. The "0" in "mmcblk0" refers to the first SD card, and "mmcblk1" refers to the second. After that, "p1" refers to the first partition of that card, "p2" to the second, and so on.
 
 If you do not plan on putting uImage under "/boot/uImage" in the first partition on the left SD card, you will also need to adjust "mmc 0:1" and "/boot/uImage". The "0" in this also refers to the specific card, and the "1" refers to the partition. The "/boot/uImage" part should be changed to match the location of uImage within the specified partition.
@@ -53,7 +55,7 @@ First, download the latest official firmware from [http://openpandora.org/firmwa
 Now, you need to copy the kernel bits into your Neuvoo installation. In the following commands, replace $STORAGE with the location where Neuvoo was extracted to.
 ```bash
   cp -r pandora-rootfs/boot/uImage* $STORAGE/boot
-````
+```
 `pandora-rootfs/boot/uImage is a symlink last we checked. Make sure $STORAGE/boot/uImage is a symlink when you're done copying.`
 
 ```bash
@@ -65,12 +67,12 @@ Now, you need to copy the kernel bits into your Neuvoo installation. In the foll
 Follow [[Pre-Boot Configuration]], with the following notes:
 
 The official OS does not save time as UTC on shutdown, but as local. Gentoo needs to know about this. When you edit hwclock, change this:
-`File: $STORAGE/etc/conf.d/hwclock`
-  clock="UTC"
+; $STORAGE/etc/conf.d/hwclock
+: clock="UTC"
 
 ...to this:
-`File: $STORAGE/etc/conf.d/hwclock`
-  clock="local"
+; $STORAGE/etc/conf.d/hwclock
+: clock="local"
 
 ==== Post-Boot Configuration ====
 Follow [[Post-Boot Configuration]].
@@ -87,5 +89,5 @@ TODO ([[NFS Rootfs]] requires more editing)
 Follow [[Pre-Boot Configuration]].
 
 After that, inside /etc/inittab, change the line starting with "s2" (or add the line) if you've configured your bootargs to use ttyS2 as recommended:
-`File /etc/inittab`
-  s2:2345:respawn:/sbin/agetty 115200 ttyS2 vt102
+; /etc/inittab
+: s2:2345:respawn:/sbin/agetty 115200 ttyS2 vt102
