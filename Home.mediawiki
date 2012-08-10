@@ -3,6 +3,7 @@
 __NOTOC__
 
 == Welcome ==
+We're heavily revising our wiki. There will be buggy links and out-of-date guides. Bear with us as we get our footing to launch, once again, into the world of embedded.
 
 Welcome the Neuvoo project! You can read all about [[About Us|who we are and what our goals are]], or you can use one of the handy links below. If you ever get stuck, 
 find a bug, or have an idea, please join us in conversation in [http://neuvoo.org:9090/?channels=neuvoo IRC].
