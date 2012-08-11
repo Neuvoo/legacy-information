@@ -1,21 +1,16 @@
-'''Get Neuvoo!'''
+'''Downloads'''
 *[[Pre-Built Images]]
-*[[Installation|Install Neuvoo]]
 *[[Kernels]]
 *[[Binaries]]
 
-'''Wiki'''
+'''Documentation'''
 *[[Home]]
-*[[HOWTOs]]
-*[[Tools]]
-*[[Platforms]]
-*[[Projects]]
 
-'''Team Neuvoo'''
+'''Community'''
 *[http://groups.google.com/group/neuvoo Mailing List]
 *[http://neuvoo.org:9090/?channels=neuvoo IRC @ Freenode#neuvoo]
 
-'''Communities'''
+'''Neighbors'''
 *''Gentoo''
 **[http://www.gentoo.org Website]
 **[http://www.gentoo-wiki.com Wiki]
@@ -34,7 +29,7 @@
 **[http://www.alwaysinnovating.com/forums/ Forums]
 **[http://www.alwaysinnovating.com/wiki/index.php/Main_Page Wiki]
 
-'''Links'''
+'''Cool Links'''
 *Hardware
 **[http://www.arm.com/products/CPUs/ARM_Cortex-A8.html TI ARMv7-A Cortex-A8]
 **[http://focus.ti.com/lit/ds/symlink/omap3530.pdf OMAP3530 Datasheet]

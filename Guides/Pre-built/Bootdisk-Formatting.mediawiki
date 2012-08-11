@@ -1,7 +1,0 @@
-The ext3 file-system is recommended, only because it's widely used and supported, and its journal is worth the extra writes needed to use it for stability in the event 
-of an unexpected shutdown. (If you have an alternative in mind that you have experience with, feel free to pick that one instead.)
-
-Use the tool of your choice to create as many partitions as you see fit. If you have not managed partitions and imaginative /etc/fstab configurations, it's highly 
-recommended you stick to one partition, and store everything inside of that.
-
-If you want the simplicity of one partition, but also want swap, consider a swap file, which will be addressed later.
