@@ -1,7 +1,3 @@
-Note: because of the way GitHub does their linking, if you aren't explicitly viewing the README.md file, you should [do so now](crossdev/README.md). Otherwise, all the links below will not work.
-
-Introduction
-============
 This will soon be replaced by updated Gentoo Embedded documentation. This page remains because it is a useful resource for cross-compiling a stage3-like system.
 
 This is our first tutorial, and perhaps the most fundamental to our project. It describes how to get the necessary tools installed and prepared, how to build the software, and then package that software into a working, native Gentoo image for ARM devices.

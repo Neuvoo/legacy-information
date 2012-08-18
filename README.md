@@ -1,5 +1,3 @@
-Note: because of the way GitHub does their linking, if you aren't explicitly viewing the README.md file, you should [do so now](information/README.md). Otherwise, all the links below will not work.
-
 Welcome
 =======
 We're heavily revising our wiki. There will be buggy links and out-of-date guides. Bear with us as we get our footing to launch, once again, into the world of embedded.
