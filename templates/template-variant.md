@@ -17,7 +17,7 @@ This image follows the following common Neuvoo development standards, which are:
 
 Download
 ========
-See [Install Pre-Built Image](Install-Pre-Built-Image.md) for instructions on installing this image. (This line can be replaced, as long as alternative instructions are provided.)
+See [Install Pre-Built Image](../install.md) for instructions on installing this image. (This line can be replaced, as long as alternative instructions are provided.)
 
 * version: [0.0.0-beagle](http://host.org/image.tar.bz2) / root password: rootpassword
 
@@ -58,8 +58,8 @@ This section is optional. It describes exactly what steps or commands were used 
 
 Further Reading
 ===============
-For information on how to install an image, see [Install Pre-Built Image](Install-Pre-Built-Image.md).
+For information on how to install an image, see [Install Pre-Built Image](../install.md).
 
-For information on building your own images, see [Create Image](Create-Image.md).
+For information on building your own images, see [Create Image](../crossdev/README.md).
 
 (Include other links here.)

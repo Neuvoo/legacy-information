@@ -82,4 +82,4 @@ In fact, while you're updating stuff, it's a really good idea to update your new
 
 Further Reading
 ===============
-You've set up your cross-compiler environment, but now you need the actual cross-compiler. Instructions for building a cross-compiler can be found in the [Installing Crossdev Tools](Installing-Crossdev-Tools.md) page.
+You've set up your cross-compiler environment, but now you need the actual cross-compiler. Instructions for building a cross-compiler can be found in the [Installing Crossdev Tools](installing-crossdev-tools.md) page.

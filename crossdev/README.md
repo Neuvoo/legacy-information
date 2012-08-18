@@ -13,7 +13,7 @@ More than anything else, this is like installing a fresh Gentoo system. The only
 Table of Contents
 =================
 It is recommended you follow the instructions in the following pages, in this order:
-* [Create Cross-Compiler Environment](Create-Cross-Compiler-Environment.md)
-* [Installing Crossdev Tools](Installing-Crossdev-Tools.md)
-* [Building Packages](Building-Packages.md)
-* [Packaging and Releasing](Packaging-and-Releasing.md)
+* [Create Cross-Compiler Environment](create-cross-compiler-environment.md)
+* [Installing Crossdev Tools](installing-crossdev-tools.md)
+* [Building Packages](building-packages.md)
+* [Packaging and Releasing](packaging-and-releasing.md)

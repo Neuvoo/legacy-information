@@ -26,8 +26,8 @@ Images
 
 Further Reading
 ===============
-For information on how to install an image, see [Install Pre-Built Image](Install-Pre-Built-Image.md).
+For information on how to install an image, see [Install Pre-Built Image](../install.md).
 
-For information on building your own images, see [Create Image](Create-Image.md).
+For information on building your own images, see [Create Image](../crossdev/README.md).
 
 (Include other links here.)

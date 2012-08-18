@@ -72,9 +72,9 @@ In order to build a new pre-built installation of Gentoo for you to download, Ge
 
 When you decide to install Gentoo or Neuvoo, you actually have two options. You can download a stage3 or stage4, and build your system up from there, or you can build a stage3 or stage4 first. Since 99% of all Gentoo users will end up building the exact same stages, regardless of whether they want a lean installation or not, your best bet is to go with a pre-built stage first and see if you like it. However, it's good to know your options in case you decide they don't meet your requirements.
 
-If you want to build your own stages, see [Create Image](Create-Image.md).
+If you want to build your own stages, see [Create Image](../crossdev/README.md).
 
-We're not going to cover Gentoo installation here. If you want to install Neuvoo, see the [Install Pre-Built Image](Install-Pre-Built-Image.md) page. If you want to install "vanilla" Gentoo, without any Neuvoo features, see [Gentoo's Handbook](http://www.gentoo.org/doc/en/handbook/).
+We're not going to cover Gentoo installation here. If you want to install Neuvoo, see the [Install Pre-Built Image](../install.md) page. If you want to install "vanilla" Gentoo, without any Neuvoo features, see [Gentoo's Handbook](http://www.gentoo.org/doc/en/handbook/).
 
 Configuration
 -------------

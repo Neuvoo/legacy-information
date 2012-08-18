@@ -81,7 +81,7 @@ The following is an excerpt from the make.conf used by us with the required vari
 	E_MACHINE=EM_ARM
 	ACCEPT_KEYWORDS="arm"
 
-All CFLAGS listed are not required, but they provide optimizations that nearly everyone will include. For more complete make.conf files that can be copied around, please see our [Pre-built Images](Pre-built-Images.md).
+All CFLAGS listed are not required, but they provide optimizations that nearly everyone will include. For more complete make.conf files that can be copied around, please see our [Pre-built Images](../images.md).
 
 Establish /usr/$CTARGET/etc/make.profile
 		ln -s /usr/portage/profiles/path/to/your/profile etc/make.profile
@@ -93,6 +93,6 @@ Congratulations you have now built your chrooted crossdev environment and you sh
 
 Further Reading
 ===============
-You're pretty much on your own from here, in terms of how to create the image. You have your toolbox; now you need to use it. In the [Building Packages](Building-Packages.md) page, we'll discuss how to use these tools properly, and what to do if you run into different kinds of problems.
+You're pretty much on your own from here, in terms of how to create the image. You have your toolbox; now you need to use it. In the [Building Packages](building-packages.md) page, we'll discuss how to use these tools properly, and what to do if you run into different kinds of problems.
 
-If you're trying to duplicate what we've done with our images to some degree, and just tweak it in different ways, you'll want to browse the [Images](Images.md) page. In [Building Packages](Building-Packages.md), we will also show you how to replicate our work using the documentation we've given.
+If you're trying to duplicate what we've done with our images to some degree, and just tweak it in different ways, you'll want to browse the [Images](../images.md) page. In [Building Packages](building-packages.md), we will also show you how to replicate our work using the documentation we've given.
