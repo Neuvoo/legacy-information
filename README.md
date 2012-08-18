@@ -1,4 +1,4 @@
-Note: because of the way GitHub does their linking, if you aren't explicitly viewing the README.md file, you should [do so now](README.md). Otherwise, all the links below will not work.
+Note: because of the way GitHub does their linking, if you aren't explicitly viewing the README.md file, you should [do so now](information/README.md). Otherwise, all the links below will not work.
 
 Welcome
 =======
